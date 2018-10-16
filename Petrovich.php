@@ -15,7 +15,7 @@ class Petrovich {
     const GENDER_MALE = 1; // Мужской
     const GENDER_FEMALE = 2; // Женский
     
-	private $gender = Petrovich::GENDER_ANDROGYNOUS; //Пол male/мужской female/женский
+    private $gender = Petrovich::GENDER_ANDROGYNOUS; //Пол male/мужской female/женский
 
     /**
      * Конструтор класса Петрович
@@ -48,8 +48,8 @@ class Petrovich {
     {
         if(empty($middlename))
             throw new Exception('Middlename cannot be empty.');
-	    
-	switch ( mb_substr( mb_strtolower($middlename) , -4))
+        
+    switch ( mb_substr( mb_strtolower($middlename) , -4))
         {
             case 'оглы': return Petrovich::GENDER_MALE; break;
             case 'кызы': return Petrovich::GENDER_FEMALE; break;
@@ -157,8 +157,8 @@ class Petrovich {
             if ( ! $this->checkGender($rule->gender) )
                 continue;
             foreach($rule->test as $last_char) {
-                $last_name_char = mb_substr($name,mb_strlen($name)-mb_strlen($last_char),mb_strlen($last_char));
-                if($last_char == $last_name_char) {
+                $last_name_char = mb_strtolower(mb_substr($name,mb_strlen($name)-mb_strlen($last_char),mb_strlen($last_char)));
+                if(mb_strtolower($last_char) == $last_name_char) {
                     if($rule->mods[$case] == '.')
                         return $name;
                     return $this->applyRule($rule->mods,$name,$case);
@@ -203,7 +203,12 @@ class Petrovich {
      * @return string
      */
     private function applyRule($mods,$name,$case) {
+        $isUpperCase = ($name != mb_strtolower($name));
         $result = mb_substr($name,0,mb_strlen($name) - mb_substr_count($mods[$case],'-'));
+        if($isUpperCase)
+        {
+            $mods[$case] = mb_strtoupper($mods[$case]);
+        }
         $result .= str_replace('-','',$mods[$case]);
         return $result;
     }
