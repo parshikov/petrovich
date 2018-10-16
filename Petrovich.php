@@ -203,7 +203,8 @@ class Petrovich {
      * @return string
      */
     private function applyRule($mods,$name,$case) {
-        $isUpperCase = ($name != mb_strtolower($name));
+        $nameWithoutFirstLetter = mb_substr($name, 1);
+        $isUpperCase = ($nameWithoutFirstLetter != mb_strtolower($nameWithoutFirstLetter));
         $result = mb_substr($name,0,mb_strlen($name) - mb_substr_count($mods[$case],'-'));
         if($isUpperCase)
         {
