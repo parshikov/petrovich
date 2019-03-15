@@ -18,7 +18,7 @@ class Petrovich {
 	private $gender = Petrovich::GENDER_ANDROGYNOUS; //Пол male/мужской female/женский
 
     /**
-     * Конструтор класса Петрович
+     * Конструктор класса Петрович
      * загружаем правила из файла rules.json
      */
     function __construct($gender = Petrovich::GENDER_ANDROGYNOUS, $rules_dir = __DIR__) {
@@ -64,7 +64,7 @@ class Petrovich {
     }
 
     /**
-     * Задаём имя и слоняем его
+     * Задаём имя и склоняем его
      *
      * @param $firstname
      * @param $case
@@ -83,7 +83,7 @@ class Petrovich {
     }
 
     /**
-     * Задём отчество и склоняем его
+     * Задаём отчество и склоняем его
      *
      * @param $middlename
      * @param $case
@@ -102,7 +102,7 @@ class Petrovich {
     }
 
     /**
-     * Задаём фамилию и слоняем её
+     * Задаём фамилию и склоняем её
      *
      * @param $lastname
      * @param $case
@@ -121,7 +121,7 @@ class Petrovich {
     }
 
     /**
-     * Функция проверяет заданное имя,фамилию или отчество на исключение
+     * Функция проверяет заданное имя, фамилию или отчество на исключение
      * и склоняет
      *
      * @param $name
